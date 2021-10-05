@@ -1,23 +1,42 @@
 import axios from 'axios';
 import './App.css';
-import { useEffect, useState } from 'react';
-import Form from './Form';
+import {  useState } from 'react';
+
+import Ball from './Ball';
+import { render } from '@testing-library/react';
+import { useEffect } from 'react/cjs/react.development';
 
 function App() {
 
-  // const [joke, setJoke ] = useState('');
-
-  useEffect(()=> {
+  // API //
+  const [joke, setJoke ] = useState('');
+  
+  // function to call the API to get a random joke
+  const getJoke = function() {
     axios({
       url: 'https://icanhazdadjoke.com/',
       method: 'GET',
-      dataResponse: 'json',
+      headers: {
+        accept: 'application/json',
+      }
     }).then((response) => {
-      console.log(response);
+      setJoke(response.data.joke);
     })
+  };
+
+  // FORM //
+  const [userInput, setUserInput] = useState("")
+    
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      setUserInput("");
+  }
+
+  useEffect(() => {
+    render(<Ball userInput={userInput}/>);
   }, [])
-
-
+  
+  
   return (
     <div className="stress-ball">
       <h1>Virtual Stress Ball</h1>
@@ -30,7 +49,29 @@ function App() {
       
       <p>Azalia</p>
 
-      <Form />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="userInput"></label>
+        <textarea 
+            placeholder="write something that's stressing you out right now (one at a time, please)"
+            id="userInput"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            />
+        <button type="submit">Get Me My Ball!</button>
+      </form>
+
+      
+
+      <p>Dads are coming to save (a little bit of) the day!</p>
+
+      <button 
+        onClick={getJoke}>Get a Joke From Dads</button>
+      <p>{ joke }</p>
+
+      <footer>
+        <p>Created by Azalia Loeciano @ Juno College 2021</p>
+        <p>Jokes taken from icanhazdadjoke API</p>
+      </footer>
 
     </div> 
 
