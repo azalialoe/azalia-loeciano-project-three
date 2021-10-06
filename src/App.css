@@ -29,7 +29,9 @@ textarea {
 }
 
 .intro-text,
-textarea {
+textarea,
+button,
+.popped {
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
@@ -44,18 +46,23 @@ textarea {
 }
 
 .joke-section {
+  border-radius: 50%;
+  padding-top: 10%;
+}
+
+.ball,
+.joke-section {
   text-align: center;
   height: 500px;
   width: 500px;
   margin: 20px calc((100% - 500px) / 2);
-  border-radius: 50%;
-  padding-top: 10%;
 }
 
 form {
   height: 200px;
   width: 35vw;
-  margin: 50px calc((100% - 35vw) / 2);
+  margin: 150px calc((100% - 35vw) / 2);
+  text-align: center;
 }
 
 textarea {
@@ -68,24 +75,55 @@ textarea {
   font-family: 'Comfortaa', cursive;
 }
 
-
-
 .ball {
-  height: 500px;
-  width: 500px;
   border-radius: 50%;
   background-color: #999695;
-  text-align: center;
-  margin: 10px calc((100% - 500px) / 2);
 }
 
-.hide {
-  display: none;
+.ball p {
+  padding-top: 170px;
+  text-align: center;
+  overflow: hidden;
+  max-width: 400px;
+  word-wrap: break-word;
+  padding-left: 80px;
 }
 
 .popped {
-  height: 300px;
-  width: 300px;
-  background-color: peachpuff;
+  background-color: #E9F5DB;
+  height: 800px;
+  width: 800px;
+  margin: 20px calc((100% - 800px) / 2);
+}
+
+.popped p {
+  padding-top: 100px;
   text-align: center;
 }
+
+h2,
+h3 {
+  text-align: center;
+  font-size: 3rem;
+  padding-top: 100px;
+}
+
+button {
+  background-color: #FFCDB2;
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow: 2px 2px black;
+  font-family: 'Comfortaa', cursive;
+}
+
+form button {
+  margin-top: 10px;
+}
+
+.resetButton {
+  margin: auto 40%;
+}
+
+
+
+

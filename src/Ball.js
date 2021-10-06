@@ -4,7 +4,7 @@ import Popped from './Popped';
 
 function Ball({userText}) {
 
-    const [countValue, setCountValue] = useState(5)
+    const [countValue, setCountValue] = useState(50)
 
     const handleClick = () => {
         if (countValue !== 0) {
@@ -31,3 +31,4 @@ function Ball({userText}) {
 }
 
 export default Ball;
+

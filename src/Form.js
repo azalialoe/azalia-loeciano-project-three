@@ -24,25 +24,29 @@ function Form(props) {
             <form onSubmit={(e) => handleStartBall(e)}>
                 <label htmlFor="userInput"></label>
                 <textarea 
-                    placeholder="write something that's stressing you out right now (one at a time, please)"
+                    placeholder="something that's stressing you out right now"
                     id="userInput"
                     value={userInput}
                     onChange={handleChange}
+                    maxLength= {180}
                     />
                     {
                         props.displayBall ?
                         <></>
                         :  <button type="submit">Get Me My Ball!</button>
                     }
-               
+                    <p>Characters count: {userInput.length} / 180</p>
+
+                    {
+                        props.displayBall ?
+                        <button className="resetButton" onClick = {() => handleResetForm()}>Reset Form</button>
+                        : <></>
+
+                    }
             </form>
+            
 
-            {
-                props.displayBall ?
-                <button onClick = {() => handleResetForm()}>Reset Form</button>
-                : <></>
-
-            }
+            
 
         </>
         
@@ -52,3 +56,5 @@ function Form(props) {
 }
 
 export default Form
+
+
