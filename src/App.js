@@ -1,10 +1,10 @@
 import axios from 'axios';
 import './App.css';
 import {  useState } from 'react';
-
+import IntroText from './IntroText';
+import Form from './Form';
 import Ball from './Ball';
-import { render } from '@testing-library/react';
-import { useEffect } from 'react/cjs/react.development';
+
 
 function App() {
 
@@ -25,48 +25,43 @@ function App() {
   };
 
   // FORM //
-  const [userInput, setUserInput] = useState("")
     
-  const handleSubmit = (e) => {
+  const [ userInput, setUserInput ] = useState('')
+    
+
+  const handleSubmit = (e, userText) => {
       e.preventDefault();
-      setUserInput("");
+      setUserInput(userText);
   }
 
-  useEffect(() => {
-    render(<Ball userInput={userInput}/>);
-  }, [])
-  
-  
+  const [ displayBall, setDisplayBall ] = useState(false);
+
+  const handleDisplayBall = (showBall) => {
+    setDisplayBall(showBall)
+  }
+
   return (
     <div className="stress-ball">
       <h1>Virtual Stress Ball</h1>
-      <p>Hi friends, this website is made to hopefully give you a teeny tiny bit break and reprieve from all the hustle and bustle that is your lives. Stress is a part of life, especially during this tough time. It's normal...until it's not. </p>
-      <p><a href="https://www.camh.ca/en/health-info/mental-health-and-covid-19/coping-with-stress-and-anxiety">CAMH</a> has some excellent tips of coping with stress and anxiety. There's also <a href="takecare19.com">takecare19</a> that lists accessible and inclusive mental health resources.</p>  
       
-      <p>Please take a great care of yourself and take as many breaks as you need!</p>
-      
-      <p>With love,</p>
-      
-      <p>Azalia</p>
+      <IntroText />
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="userInput"></label>
-        <textarea 
-            placeholder="write something that's stressing you out right now (one at a time, please)"
-            id="userInput"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
+      <Form handleSubmit={handleSubmit}
+            handleDisplayBall={handleDisplayBall}
+            displayBall = {displayBall}
             />
-        <button type="submit">Get Me My Ball!</button>
-      </form>
 
+      { displayBall ? 
+      <Ball userText={userInput}  />
+      : <> </>
+      }
       
-
-      <p>Dads are coming to save (a little bit of) the day!</p>
-
-      <button 
-        onClick={getJoke}>Get a Joke From Dads</button>
-      <p>{ joke }</p>
+      <div className="joke-section">
+        <p>Dads are coming to save (a little bit of) the day! ☂️</p>
+        <button onClick={getJoke}>Get a Joke From Dads</button>
+        <p>{ joke }</p>
+      </div>
+      
 
       <footer>
         <p>Created by Azalia Loeciano @ Juno College 2021</p>
