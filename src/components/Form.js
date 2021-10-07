@@ -21,15 +21,16 @@ function Form(props) {
     return(
         <>
 
-            <form onSubmit={(e) => handleStartBall(e)}>
+            <form onSubmit={userInput === '' ? null : ((e) => handleStartBall(e))}>
                 <label htmlFor="userInput"></label>
                 <textarea 
-                    placeholder="something that's stressing you out right now"
+                    placeholder="write something that's stressing you out right now. or if you're just here for the dad jokes, scroll right down!"
                     id="userInput"
                     value={userInput}
                     onChange={handleChange}
                     maxLength= {180}
                     />
+
                     {
                         props.displayBall ?
                         <></>

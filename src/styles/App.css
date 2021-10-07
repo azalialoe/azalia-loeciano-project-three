@@ -50,6 +50,10 @@ button,
   padding-top: 10%;
 }
 
+.joke-section p {
+  word-wrap: break-word;
+}
+
 .ball,
 .joke-section {
   text-align: center;
@@ -122,6 +126,59 @@ form button {
 
 .resetButton {
   margin: auto 40%;
+}
+
+footer {
+  padding: 2px 0;
+  text-align: center;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1000px) {
+  .joke-section {
+    padding: 175px 20px 0 20px;
+  }
+}
+
+@media (max-width: 550px) {
+  .intro-text,
+  .ball,
+  .joke-section,
+  .popped,
+  textarea {
+    width: 355px
+  }
+  
+  .intro-text {
+    height: 520px;
+    margin: 0 calc((100% - 355px) / 2);
+  }
+
+  .ball,
+  .joke-section,
+  .popped {
+    height: 350px;
+    margin: 20px calc((100% - 355px) / 2);
+  }
+
+  .joke-section {
+    padding: 40px 40px 0 40px;
+  }
+
+  h2,
+  h3 {
+    font-size: 1rem;
+    padding-top: 50px;
+  }
+
+  .popped p {
+    padding-top: 10px;
+  }
+
+  button {
+    padding: 5px;
+  }
 }
 
 

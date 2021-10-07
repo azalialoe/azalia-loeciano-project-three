@@ -1,15 +1,19 @@
 import axios from 'axios';
-import './App.css';
+import './styles/App.css';
 import {  useState } from 'react';
-import IntroText from './IntroText';
-import Form from './Form';
-import Ball from './Ball';
+import IntroText from './components/IntroText';
+import Form from './components/Form';
+import Ball from './components/Ball';
+import DadJokes from './components/DadJokes';
+import Footer from './components/Footer';
 
 
 function App() {
 
-  // API //
+  // states //
   const [joke, setJoke ] = useState('');
+  const [ userInput, setUserInput ] = useState('')
+  const [ displayBall, setDisplayBall ] = useState(false);
   
   // function to call the API to get a random joke
   const getJoke = function() {
@@ -24,17 +28,14 @@ function App() {
     })
   };
 
-  // FORM //
-    
-  const [ userInput, setUserInput ] = useState('')
-    
+  // FORM - when users submit form //
 
   const handleSubmit = (e, userText) => {
       e.preventDefault();
       setUserInput(userText);
   }
 
-  const [ displayBall, setDisplayBall ] = useState(false);
+  // BALL - when to display ball //
 
   const handleDisplayBall = (showBall) => {
     setDisplayBall(showBall)
@@ -42,7 +43,6 @@ function App() {
 
   return (
     <div className="stress-ball">
-      <h1>Virtual Stress Ball</h1>
       
       <IntroText />
 
@@ -52,40 +52,17 @@ function App() {
             />
 
       { displayBall ? 
-      <Ball userText={userInput}  />
-      : <> </>
+        <Ball userText={userInput}  />
+        : <> </>
       }
       
-      <div className="joke-section">
-        <p>Dads are coming to save (a little bit of) the day! ☂️</p>
-        <button onClick={getJoke}>Get a Joke From Dads</button>
-        <p>{ joke }</p>
-      </div>
+      <DadJokes joke={joke}
+                getJoke={getJoke} />
       
-
-      <footer>
-        <p>Created by Azalia Loeciano @ Juno College 2021</p>
-        <p>Jokes taken from icanhazdadjoke API</p>
-      </footer>
+      <Footer />
 
     </div> 
-
-    
   );
 }
 
 export default App;
-
-// Create a form to get users input 
-// Add an event listener so when they hit submit, the input will be displayed on a separate section of the website
-
-
-// A local method to make the third-party API call with user input
-// Once we get a response from the API, we need to put the data we get back somewhere and use that data to update our page. We will use state.
-// - when successful, update the website to display the joke
-
-
-// Render the application
-// - a ball
-// - render/display users input on the ball
-// - random dad joke on the bottom of page
