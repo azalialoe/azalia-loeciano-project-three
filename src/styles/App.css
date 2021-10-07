@@ -166,6 +166,10 @@ footer {
     padding: 120px 20px 0 20px;
   }
 
+  form {
+    margin-top: 20px;
+  }
+
   .resetButton {
     margin: auto 20%;
   }
